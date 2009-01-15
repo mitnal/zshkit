@@ -41,6 +41,12 @@ chrub () {
   fi
 }
 
+# sudo rm -rf /opt/local/lib/ruby1.9/gems/1.9.1
+# sudo ln -s /opt/local/lib/ruby/gems/1.8 /opt/local/lib/ruby1.9/gems/1.9.1
+
+# Remove and symlink to 1.8 
+# /opt/local/lib/ruby1.9/gems/1.9.1
+
 _rake () {
   if [ -f Rakefile ]; then
     if _rake_does_task_list_need_generating; then
