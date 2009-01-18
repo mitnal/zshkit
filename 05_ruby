@@ -7,16 +7,6 @@ alias sc="./script/console"
 alias ss="./script/server"
 alias res="touch tmp/restart.txt"
 
-# gemdoc() {
-#   local gemdir=`gem env gemdir`
-#   open $gemdir/doc/`/bin/ls $gemdir/doc/ | grep $1 | sort | tail -1`/rdoc/index.html
-# }
-# _gemdocomplete() {
-#   COMPREPLY=($(compgen -W '$(ls `gem env gemdir`/doc)' -- ${COMP_WORDS[COMP_CWORD]}))
-#   return 0
-# }
-# complete -o default -o nospace -F _gemdocomplete gemdoc
-
 
 _rake_does_task_list_need_generating () {
   if [ ! -f .rake_tasks ]; then return 0;
