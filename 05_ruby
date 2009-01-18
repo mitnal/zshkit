@@ -18,24 +18,19 @@ _rake_does_task_list_need_generating () {
 }
 
 chrub () {
-  if [ ! $1 ]; then 
-    v=`ruby -v`
-    echo "Ruby 1.8 or 1.9 version needed. Current Version:"
-    echo $v
+  v=`ruby -e "puts RUBY_VERSION.split('.')[0,2].join('.')"`
+  if [ $v = "1.9" ]; then 
+    cv="1.8"
   else
-    rubyexes=(erb gem irb rake rdoc ri ruby testrb)
-    for i in $rubyexes; do
-      sudo unlink "/opt/local/bin/${i}"
-      sudo ln -s "/opt/local/bin/${i}${1}" "/opt/local/bin/${i}"
-    done
+    cv="1.9"
   fi
+  rubyexes=(erb gem irb rake rdoc ri ruby testrb)
+  for i in $rubyexes; do
+    sudo unlink "/opt/local/bin/${i}"
+    sudo ln -s "/opt/local/bin/${i}${cv}" "/opt/local/bin/${i}"
+  done
+  echo "Now Running: "`ruby -v`
 }
-
-# sudo rm -rf /opt/local/lib/ruby1.9/gems/1.9.1
-# sudo ln -s /opt/local/lib/ruby/gems/1.8 /opt/local/lib/ruby1.9/gems/1.9.1
-
-# Remove and symlink to 1.8 
-# /opt/local/lib/ruby1.9/gems/1.9.1
 
 _rake () {
   if [ -f Rakefile ]; then
