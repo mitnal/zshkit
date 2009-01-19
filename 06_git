@@ -3,31 +3,17 @@
 
 if [[ -x `which git` ]]; then
   
+  # Promt Work
+  
 	function git-branch-name () {
 		git branch 2> /dev/null | grep ^\* | sed s/^\*\ //
 	}
+	
 	function git-dirty () {
 		git status | grep "nothing to commit (working directory clean)"
 		echo $?
 	}
-	function gsrb () {
-		branch=$(git-branch-name) 
-		git checkout master
-		git svn rebase
-		git checkout "${branch}"
-		git rebase master
-	}
-	function gmrb () {
-		branch=$(git-branch-name) 
-		git checkout master
-		git pull origin master
-		git checkout "${branch}"
-		git rebase master
-	}
-	function gsu () {
-		git checkout master
-		git svn rebase
-	}
+	
 	function git-prompt() {
 		branch=$(git-branch-name)
 		if [[ x$branch != x ]]; then
@@ -36,11 +22,46 @@ if [[ -x `which git` ]]; then
 			[ x$branch != x ] && echo " %{$dirty_color%}$branch $(git-stash-count)%{$reset_color%} "
 		fi
 	}
+	
 	function git-stash-count() {
     branch=$(git-branch-name)
     count=$(git stash list | grep "${branch}" | wc -l | awk '{print $1}')
     [ $count != 0 ] && echo "($count)"
   }
+	
+	# SVN Macros
+	
+	function gsrb () {
+		branch=$(git-branch-name) 
+		git checkout master
+		git svn rebase
+		git checkout "${branch}"
+		git rebase master
+	}
+	
+	function gsu () {
+		git checkout master
+		git svn rebase
+	}
+	
+	function gsrbc () {
+	  branch=$(git-branch-name) 
+	  gsrb
+	  git checkout master
+	  git rebase "${branch}"
+	  git svn dcommit
+	}
+	
+	# Other Macros
+	
+	function gmrb () {
+		branch=$(git-branch-name) 
+		git checkout master
+		git pull origin master
+		git checkout "${branch}"
+		git rebase master
+	}
+	
   function gtag () {
     git tag -a -m "Tagging Version ${1}" $1
     git push origin master
