@@ -50,6 +50,7 @@ if [[ -x `which git` ]]; then
 	  git checkout master
 	  git rebase "${branch}"
 	  git svn dcommit
+	  git checkout "${branch}"
 	}
 	
 	# Other Macros
