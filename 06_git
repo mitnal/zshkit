@@ -111,6 +111,6 @@ alias grmut='git ls-files -o | xargs rm'
 alias gits="ls /opt/local/bin/ | grep git"
 alias gh="github"
 alias grb_gh="open http://github.com/webmat/git_remote_branch/tree/master"
-
+alias gignore_xcode='echo "\n\n# XCode\nbuild\n*.mode1v3\n*.mode2v3\n*.nib\n*.swp\n*.pbxuser\n*.perspective\n*.perspectivev3\n\n# OSX\n.DS_Store\n\n# TextMate\n*.tm_build_errors\n\n\n" >> .gitignore'
 
 
