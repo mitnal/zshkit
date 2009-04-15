@@ -14,3 +14,6 @@ alias webmin_stop='sudo /opt/local/etc/webmin/stop'
 
 alias macprofile="mate ~/.MacOSX/environment.plist"
 
+alias mcstop="mediacenter killall iTunes"
+alias mcstart="mediacenter open /Applications/iTunes.app"
+

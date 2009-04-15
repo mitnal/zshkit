@@ -106,7 +106,8 @@ alias gba='git branch -a'
 alias gsp="git svn dcommit"
 
 # Utilitarian
-alias grmut='git ls-files -o --exclude-from=.gitignore | xargs rm'
+# alias grmut='git ls-files -o --exclude-from=.gitignore | xargs rm'
+alias grmut='git ls-files -o | xargs rm'
 alias gits="ls /opt/local/bin/ | grep git"
 alias gh="github"
 alias grb_gh="open http://github.com/webmat/git_remote_branch/tree/master"
