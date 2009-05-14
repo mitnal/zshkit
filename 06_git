@@ -68,6 +68,15 @@ if [[ -x `which git` ]]; then
     git push origin master
     git push --tags
 	}
+	
+	function ginit_xcode () {
+	  git init
+	  gignore_xcode
+	  git add .gitignore
+	  git commit -m "Ignore Xcode stuff."
+	  git add .
+	  git commit -m "Initial Xcode project."
+	}
   
 fi
 
