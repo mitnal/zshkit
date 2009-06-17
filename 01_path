@@ -1,8 +1,57 @@
+# Add some dirs to the path.
+pathdirs=(/Library/Frameworks/Python.framework/Versions/Current/bin
+        /usr/local/ActivePerl-5.10/bin
+        /usr/local/ActivePerl-5.10/site/bin
+        /usr/local/bin
+        /usr/local/git/bin 
+        /usr/local/libexec/git-core  
+        /var/lib/gems/1.8/bin
+        /opt/local/bin 
+        ~/bin )
 
-# Old kit install
-# path=(/opt/local/bin $path /usr/local/bin /usr/local/sbin)
+for dir ($pathdirs)
+  if [[ -d $dir ]]; then 
+    path=($dir $path) 
+  fi
 
-path=(/opt/local/bin /opt/local/sbin /opt/local/lib/mysql5/bin /opt/local/apache2/bin /opt/local/lib/postgresql83/bin $path)
-manpath=(/opt/local/share/man $manpath)
-infopath=(/opt/local/share/info $infopath)
+cdpath=(~ ~/Projects ~/Work)
 
+# Allow MacPorts man pages and others
+dirs=( /usr/local/git/man 
+       /sw/share/man 
+       /opt/local/man /usr/local/man 
+       ~/Docs/man 
+       /usr/local/ActivePerl-5.10/man 
+       /usr/local/ActivePerl-5.10/site/man)
+       
+for dir ($dirs) 
+  if [[ -x $dir ]]; then 
+    manpath=($manpath $dir) 
+  fi
+
+# Add function paths
+# funcdirs=( $HOME/.zsh/func /sw/share/zsh/ /sw/share/zsh/VCS_Info /sw/share/zsh/VCS_Info/Backends)
+# I'm using a manually installed zsh 4.3.9
+
+binary=$(which zsh)
+install_path=$binary:h:h # Strip bin/zsh to find installation path.
+
+funcdirs=( $HOME/.zsh/func $install_path/share/zsh/4.3.9/functions 
+                $install_path/share/zsh/4.3.6/functions 
+                $install_path/share/zsh/4.2.6/functions
+                /usr/share/zsh/4.2.6/functions
+                /usr/share/zsh/4.3.6/functions
+)
+for dir ($funcdirs) 
+  if [[ -x $dir ]]; then 
+    fpath=($fpath $dir) 
+  fi
+
+typeset -gU path cdpath manpath fpath
+
+# A few named directories cd by doing cd ~D etc.
+D=~/Documents
+DL=~/Downloads
+P=~/Projects
+W=~/work
+Z=~/Projects/zshkit

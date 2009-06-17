@@ -1,5 +1,8 @@
-mydir=`dirname $0`
+if [[ $SHLVL < 4 ]]; then
+	mydir=`dirname $0`
 
-for f in $mydir/??_*; do
-	source $f
-done
+	for f in $mydir/??_*; do
+		source $f
+	done
+fi
+export EDITOR="vim"
