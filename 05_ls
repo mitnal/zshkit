@@ -14,10 +14,10 @@
 #export LSCOLORS=DxGxcxdxCxcgcdabagacad
 export LSCOLORS=GxfxcxdxCxcgcdabagacad
 
-alias l='ls'
-alias ls='ls -G'
-alias ll='ls -al'
-alias la='ls -al'
-alias lh='ls -Alh'
-alias lt='ls -Alt'
+alias l='ls --color=auto'
+alias ls='ls -G --color=auto'
+alias ll='ls -al --color=auto'
+alias la='ls -al --color=auto'
+alias lh='ls -Alh --color=auto'
+alias lt='ls -Alt --color=auto'
 
