@@ -1,3 +1,14 @@
+function gi () {
+  echo ".DS_Store
+log/*.log
+tmp/**/*
+config/database.yml
+db/*.sqlite3
+public/cache/**/*
+doc/api
+doc/app" > ./.gitignore
+}
+
 alias sc='./script/console'
 alias ss='./script/server'
 alias r='./rake'
